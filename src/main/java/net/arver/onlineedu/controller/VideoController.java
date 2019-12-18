@@ -8,6 +8,6 @@ public class VideoController {
 
     @RequestMapping("test")
     public String test() {
-        return "Hello Online-Edu!";
+        return "Hello Online-Edu111!";
     }
 }
