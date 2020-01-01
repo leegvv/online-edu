@@ -3,7 +3,7 @@ package net.arver.onlineedu.domain;
 import java.io.Serializable;
 
   /**
-   * 评论.
+   * Comment.
    */
 public class Comment implements Serializable {
 
@@ -35,7 +35,7 @@ public class Comment implements Serializable {
   /**
    * point.
    */
-  private double point;
+  private Double point;
 
   /**
    * up.
@@ -104,11 +104,11 @@ public class Comment implements Serializable {
   }
 
 
-  public double getPoint() {
+  public Double getPoint() {
     return point;
   }
 
-  public void setPoint(double point) {
+  public void setPoint(Double point) {
     this.point = point;
   }
 

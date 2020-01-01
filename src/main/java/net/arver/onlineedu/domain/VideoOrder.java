@@ -3,7 +3,7 @@ package net.arver.onlineedu.domain;
 import java.io.Serializable;
 
   /**
-   * 订单.
+   * VideoOrder.
    */
 public class VideoOrder implements Serializable {
 
@@ -23,7 +23,7 @@ public class VideoOrder implements Serializable {
   private String outTradeNo;
 
   /**
-   * 状态（0: 未支付， 1：已支付）.
+   * state.
    */
   private Integer state;
 
@@ -38,7 +38,7 @@ public class VideoOrder implements Serializable {
   private java.util.Date notifyTime;
 
   /**
-   * 金额（单位：分）.
+   * totalFee.
    */
   private Integer totalFee;
 

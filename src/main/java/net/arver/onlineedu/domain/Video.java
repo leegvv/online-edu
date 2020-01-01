@@ -3,7 +3,7 @@ package net.arver.onlineedu.domain;
 import java.io.Serializable;
 
   /**
-   * 视频.
+   * Video.
    */
 public class Video implements Serializable {
 
@@ -50,7 +50,7 @@ public class Video implements Serializable {
   /**
    * point.
    */
-  private double point;
+  private Double point;
 
 
 
@@ -126,11 +126,11 @@ public class Video implements Serializable {
   }
 
 
-  public double getPoint() {
+  public Double getPoint() {
     return point;
   }
 
-  public void setPoint(double point) {
+  public void setPoint(Double point) {
     this.point = point;
   }
 

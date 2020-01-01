@@ -3,7 +3,7 @@ package net.arver.onlineedu.domain;
 import java.io.Serializable;
 
   /**
-   * 小节.
+   * Episode.
    */
 public class Episode implements Serializable {
 
