@@ -7,7 +7,7 @@ import net.arver.onlineedu.domain.User;
 
 import java.util.Date;
 
-public class JwtUtil {
+public class JwtUtils {
 
     public static final String SUBJECT = "onlineedu";
 
@@ -47,8 +47,7 @@ public class JwtUtil {
      * @param token token
      * @return 用户数据
      */
-    public static Claims validateToken(final String token) {
-
+    public static Claims checkJwt(final String token) {
         try {
             final Claims claims = Jwts.parser().setSigningKey(APPSECRET).parseClaimsJws(token).getBody();
             return claims;

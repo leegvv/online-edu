@@ -1,6 +1,7 @@
 package net.arver.onlineedu.controller;
 
 import net.arver.onlineedu.config.WeChatConfig;
+import net.arver.onlineedu.domain.JsonData;
 import net.arver.onlineedu.mapper.VideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,10 @@ public class TestController {
     private VideoMapper videoMapper;
 
     @RequestMapping("test_config")
-    public String testConfig() {
+    public JsonData testConfig() {
         System.out.println(weChatConfig.getAppId());
         System.out.println(weChatConfig.getAppSecret());
-        return "weChatConfig";
+        return JsonData.buildSuccess(weChatConfig.getAppId());
     }
 
     @RequestMapping("test_db")
