@@ -48,6 +48,30 @@ public class WeChatConfig {
      */
     private final static String OPEN_USER_INFO_URL ="https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN";
 
+    /**
+     * 商户号id.
+     */
+    @Value("${wxpay.mer_id}")
+    private String mchId;
+
+    /**
+     * 支付key.
+     */
+    @Value("${wxpay.key}")
+    private String key;
+
+    /**
+     * 微信支付回调url.
+     */
+    @Value("${wxpay.callback}")
+    private String payCallbackUrl;
+
+    /**
+     * 统一下单url
+     */
+    //private static final String UNIFIED_ORDER_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+    private static final String UNIFIED_ORDER_URL = "http://api.xdclass.net:8081/pay/unifiedorder";
+
     public String getAppId() {
         return appId;
     }
@@ -98,5 +122,33 @@ public class WeChatConfig {
 
     public static String getOpenUserInfoUrl() {
         return OPEN_USER_INFO_URL;
+    }
+
+    public String getMchId() {
+        return mchId;
+    }
+
+    public void setMchId(final String mchId) {
+        this.mchId = mchId;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(final String key) {
+        this.key = key;
+    }
+
+    public String getPayCallbackUrl() {
+        return payCallbackUrl;
+    }
+
+    public void setPayCallbackUrl(final String payCallbackUrl) {
+        this.payCallbackUrl = payCallbackUrl;
+    }
+
+    public static String getUnifiedOrderUrl() {
+        return UNIFIED_ORDER_URL;
     }
 }

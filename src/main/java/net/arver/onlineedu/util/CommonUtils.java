@@ -19,8 +19,8 @@ public class CommonUtils {
 
     /**
      * md5常用工具类.
-     * @param data
-     * @return
+     * @param data md5加密参数
+     * @return md5加密值
      */
     public static String MD5(final String data) {
         try {
@@ -28,7 +28,7 @@ public class CommonUtils {
             final byte[] array = md5.digest(data.getBytes("UTF-8"));
             final StringBuilder sb = new StringBuilder();
             for (final byte item : array) {
-                sb.append(Integer.toHexString((item & 0xFF) | 0x100)).substring(1, 3);
+                sb.append(Integer.toHexString((item & 0xFF) | 0x100).substring(1, 3));
             }
             return sb.toString().toUpperCase();
         } catch (final Exception e) {

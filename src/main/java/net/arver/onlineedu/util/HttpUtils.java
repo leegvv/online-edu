@@ -78,7 +78,8 @@ public class HttpUtils {
             .build();
         final HttpPost httpPost = new HttpPost(url);
         httpPost.setConfig(requestConfig);
-        httpPost.addHeader("Content-Type", "text/html;charset=UTF-8");
+        //httpPost.addHeader("Content-Type", "text/html; charset=UTF-8");
+        httpPost.addHeader("Content-Type","text/html; charset=UTF-8");
         if (data != null && data instanceof String) {
             final StringEntity stringEntity = new StringEntity(data, "UTF-8");
             httpPost.setEntity(stringEntity);
@@ -88,7 +89,7 @@ public class HttpUtils {
             final CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
             final HttpEntity httpEntity = httpResponse.getEntity();
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                final String result = EntityUtils.toString(httpEntity);
+                final String result = EntityUtils.toString(httpEntity, "UTF-8");
                 return result;
             }
         } catch (final IOException e) {

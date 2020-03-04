@@ -22,12 +22,12 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Video findById(final int id) {
-        return videoMapper.selectByPrimaryKey(id);
+        return videoMapper.findById(id);
     }
 
     @Override
     public int update(final Video video) {
-        return videoMapper.updateByPrimaryKeySelective(video);
+        return videoMapper.update(video);
     }
 
     @Override

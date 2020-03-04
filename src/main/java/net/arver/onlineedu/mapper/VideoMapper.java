@@ -21,13 +21,13 @@ public interface VideoMapper {
     List<Video> findAll();
 
     @Select("SELECT * FROM video WHERE id = #{id}")
-    Video selectByPrimaryKey(int id);
+    Video findById(int id);
 
     @UpdateProvider(type = VideoSqlProvider.class, method = "updateByPrimaryKey")
     int updateByPrimaryKey(Video video);
 
     @UpdateProvider(type = VideoSqlProvider.class, method = "updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Video video);
+    int update(Video video);
 
     @Delete("DELETE FROM video WHERE id = #{id}")
     int delete(int id);
