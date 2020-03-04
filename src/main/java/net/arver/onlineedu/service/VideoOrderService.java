@@ -1,5 +1,6 @@
 package net.arver.onlineedu.service;
 
+import net.arver.onlineedu.domain.VideoOrder;
 import net.arver.onlineedu.dto.VideoOrderDto;
 
 /**
@@ -13,4 +14,19 @@ public interface VideoOrderService {
      * @return 订单
      */
     String save(VideoOrderDto videoOrderDto) throws Exception;
+
+    /**
+     * 根据流水号查找订单.
+     * @param outTradeNo 流水号
+     * @return 订单
+     */
+    VideoOrder findByOutTradeNo(String outTradeNo);
+
+    /**
+     * 根据流水号更新订单.
+     * @param videoOrder 订单
+     * @return 更新记录数
+     */
+    int updateVideoOrderByOutTradeNo(VideoOrder videoOrder);
+
 }

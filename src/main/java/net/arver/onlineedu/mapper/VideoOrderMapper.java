@@ -53,5 +53,12 @@ public interface VideoOrderMapper {
     @Update("update video_order set del = 0 where id = #{id} and user_id = #{userId}")
     int delete(@Param("id") int id, @Param("userId") int userId);
 
-
+    /**
+     * 根据流水号更新订单
+     * @param videoOrder 订单
+     * @return 更新记录数
+     */
+    @Update("update video_order set state=#{state}, notify_time=#{notifyTime}, openid=#{openid}" +
+    " where out_trade_no=#{outTradeNo} and state=0 and del=0")
+    int updateVideoOrderByOutTradeNo(VideoOrder videoOrder);
 }
