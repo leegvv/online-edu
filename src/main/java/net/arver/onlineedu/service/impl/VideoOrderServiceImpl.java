@@ -5,6 +5,7 @@ import net.arver.onlineedu.domain.User;
 import net.arver.onlineedu.domain.Video;
 import net.arver.onlineedu.domain.VideoOrder;
 import net.arver.onlineedu.dto.VideoOrderDto;
+import net.arver.onlineedu.exception.ServiceException;
 import net.arver.onlineedu.mapper.UserMapper;
 import net.arver.onlineedu.mapper.VideoMapper;
 import net.arver.onlineedu.mapper.VideoOrderMapper;
@@ -12,8 +13,12 @@ import net.arver.onlineedu.service.VideoOrderService;
 import net.arver.onlineedu.util.CommonUtils;
 import net.arver.onlineedu.util.HttpUtils;
 import net.arver.onlineedu.util.WXPayUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Map;
@@ -22,6 +27,10 @@ import java.util.TreeMap;
 
 @Service
 public class VideoOrderServiceImpl implements VideoOrderService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Logger dataLogger = LoggerFactory.getLogger("dataLogger");
 
     @Autowired
     private WeChatConfig weChatConfig;
@@ -35,8 +44,15 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     @Autowired
     private UserMapper userMapper;
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public String save(final VideoOrderDto videoOrderDto) throws Exception {
+    public String save(final VideoOrderDto videoOrderDto){
+
+        dataLogger.info("module=video_order`api=save`user_id={}", videoOrderDto.getUserId());
+
+        logger.info("开发处理订单");
+        logger.error("订单异常");
+
         // 查找视频信息
         final Video video = videoMapper.findById(videoOrderDto.getVideoId());
 
@@ -63,7 +79,12 @@ public class VideoOrderServiceImpl implements VideoOrderService {
         videoOrderMapper.insert(videoOrder);
 
         // 获取codeurl
-        final String codeUrl = unifiedOrder(videoOrder);
+        final String codeUrl;
+        try {
+            codeUrl = unifiedOrder(videoOrder);
+        } catch (Exception e) {
+            throw new ServiceException(-1, "统一下单异常");
+        }
 
         return codeUrl;
     }
@@ -104,7 +125,6 @@ public class VideoOrderServiceImpl implements VideoOrderService {
 
         // map转xml
         final String payXml = WXPayUtil.mapToXml(params);
-        System.out.println(payXml);
 
         // 统一下单
         final String orderStr = HttpUtils.doPost(WeChatConfig.getUnifiedOrderUrl(), payXml, 4000);
@@ -113,7 +133,7 @@ public class VideoOrderServiceImpl implements VideoOrderService {
         }
 
         final Map<String, String> unifiedOrderMap = WXPayUtil.xmlToMap(orderStr);
-        System.out.println(unifiedOrderMap.toString());
+
         if (unifiedOrderMap != null) {
             return unifiedOrderMap.get("code_url");
         }

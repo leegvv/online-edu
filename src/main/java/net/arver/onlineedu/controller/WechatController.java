@@ -129,7 +129,6 @@ public class WechatController {
         //处理失败
         response.setContentType("text/xml");
         response.getWriter().println("fail");
-        //response.getWriter().println("success");
     }
 
 

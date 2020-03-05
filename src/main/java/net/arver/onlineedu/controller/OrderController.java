@@ -41,7 +41,7 @@ public class OrderController {
      */
     @GetMapping("add")
     public void saveOrder(@RequestParam("video_id") final int videoId,
-                              final HttpServletResponse response) throws Exception {
+                              final HttpServletResponse response) {
         //final String ip = IpUtils.getIpAddr(request);
         //final Integer userId = (Integer) request.getAttribute("user_id");
         int userId = 1;

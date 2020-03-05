@@ -13,7 +13,7 @@ public interface VideoOrderService {
      * @param videoOrderDto 订单dto
      * @return 订单
      */
-    String save(VideoOrderDto videoOrderDto) throws Exception;
+    String save(VideoOrderDto videoOrderDto);
 
     /**
      * 根据流水号查找订单.
