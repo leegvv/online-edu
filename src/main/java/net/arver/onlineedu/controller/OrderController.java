@@ -44,6 +44,8 @@ public class OrderController {
                               final HttpServletResponse response) {
         //final String ip = IpUtils.getIpAddr(request);
         //final Integer userId = (Integer) request.getAttribute("user_id");
+
+        // 开发临时写死
         int userId = 1;
         final String ip = "192.168.3.6";
         final VideoOrderDto videoOrderDto = new VideoOrderDto();
